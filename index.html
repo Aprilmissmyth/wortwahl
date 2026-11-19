@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Wortwahl · 用规律猜德语</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<main>
+  <section id="home">
+    <header class="brand">
+      <h1 lang="de">Wortwahl</h1>
+      <p>不背单词，用规律猜德语</p>
+    </header>
+    <div class="hero" id="hero"></div>
+
+    <section class="daily">
+      <h2>每日练习</h2>
+      <p class="sub">复习规律课里猜过的词，并逐步学习 109 个 A1 常用词，按遗忘规律安排。</p>
+      <div class="stats" id="stats"></div>
+      <button class="primary big" id="start">开始练习</button>
+      <p class="sub center" id="startNote"></p>
+    </section>
+
+    <div id="lessons"></div>
+
+    <details class="panel" id="howto">
+      <summary>怎么玩</summary>
+      <ul class="rules">
+        <li>规律课：先看一条规律和几个例子，然后用它去猜从没学过的词。每课藏着一两个例外“陷阱”。</li>
+        <li>把卡片划向正确答案的那一边，也可以直接点下面的选项按钮。</li>
+        <li>词性题：左划 <b class="g-m" lang="de">der</b>，右划 <b class="g-f" lang="de">die</b>，上划 <b class="g-n" lang="de">das</b>。</li>
+        <li>规律课里考过的词会自动加入每日练习，过一段时间换个考法再出现。</li>
+        <li>每日练习：新词先出现介绍卡，再考释义和词性；答得又快又对，复习间隔才会拉长。</li>
+        <li>电脑上：<kbd>←</kbd> <kbd>→</kbd> <kbd>↑</kbd> 作答，<kbd>空格</kbd> 重听，<kbd>回车</kbd> 继续。</li>
+      </ul>
+    </details>
+
+    <details class="panel" id="flagPanel" hidden>
+      <summary id="flagSummary"></summary>
+      <p class="sub">这些词你标记过发音可能不对。</p>
+      <ul class="words" id="flagList"></ul>
+    </details>
+
+    <details class="panel">
+      <summary>设置与进度</summary>
+      <label class="check"><input type="checkbox" id="autoplay"> 自动播放发音</label>
+      <label class="check">发音
+        <select id="voice" aria-label="选择发音"></select>
+        <button id="voiceTry" type="button">试听</button>
+      </label>
+      <div class="row">
+        <button id="export">导出进度</button>
+        <label class="filebtn">导入进度<input type="file" id="import" accept="application/json,.json"></label>
+        <button id="reset" class="danger">清空进度</button>
+      </div>
+      <p id="ioMsg" class="sub" role="status"></p>
+    </details>
+
+    <footer class="sub">进度只保存在这个浏览器里。发音由 Piper 语音合成生成，不是真人录音。</footer>
+  </section>
+
+  <section id="play" hidden>
+    <div class="topbar">
+      <button id="quit" aria-label="结束这一局">×</button>
+      <div class="progress" role="progressbar" aria-label="本局进度" aria-valuemin="0" aria-valuemax="100"><div id="progressFill"></div></div>
+      <span id="streak" class="streak"></span>
+    </div>
+    <div class="stage">
+      <button class="target up" id="tUp" data-dir="up"></button>
+      <div class="deck">
+        <div class="card back" aria-hidden="true"></div>
+        <div class="card" id="card"></div>
+      </div>
+      <div class="timer" id="timer" aria-hidden="true"><div id="timerFill"></div></div>
+      <div class="targets">
+        <button class="target" id="tLeft" data-dir="left"></button>
+        <button class="target" id="tRight" data-dir="right"></button>
+      </div>
+      <p id="hint" class="hint"></p>
+    </div>
+    <div id="live" class="sr-only" aria-live="polite"></div>
+  </section>
+
+  <section id="summary" hidden>
+    <h2 class="title" id="sumTitle">这一局结束了</h2>
+    <div class="stats four" id="sumStats"></div>
+    <div id="missed"></div>
+    <div class="actions">
+      <button class="primary big" id="again">再来一局</button>
+      <button class="big" id="toHome">返回首页</button>
+    </div>
+  </section>
+</main>
+<script src="js/words.js"></script>
+<script src="js/rules.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+[
+  {"id": "m", "label": "男声（Thorsten）", "model": "de_DE-thorsten-medium"},
+  {"id": "f", "label": "女声（Kerstin）", "model": "de_DE-kerstin-medium"}
+]
